@@ -1,0 +1,3 @@
+[2018-10-28 18:12:25.916] [renderer1] [info] no standard startup: not just one text editor
+[2018-10-28 18:12:43.123] [renderer1] [error] net::ERR_NAME_NOT_RESOLVED: Error: net::ERR_NAME_NOT_RESOLVED
+[2018-10-28 18:12:43.979] [renderer1] [error] An unknown error occurred. Please consult the log for more details.

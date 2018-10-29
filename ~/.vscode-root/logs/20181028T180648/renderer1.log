@@ -1,0 +1,10 @@
+[2018-10-28 18:10:50.914] [renderer1] [error] connect ENOENT /home/shammael/Documentos/Programing/node/noderest1/~/.vscode-root/1.27.2-shared.sock: Error: connect ENOENT /home/shammael/Documentos/Programing/node/noderest1/~/.vscode-root/1.27.2-shared.sock
+    at Object._errnoException (util.js:1024:11)
+    at _exceptionWithHostPort (util.js:1046:20)
+    at PipeConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+[2018-10-28 18:10:51.510] [renderer1] [info] no standard startup: not a new window
+[2018-10-28 18:10:54.551] [renderer1] [error] Error: connect ENOENT /home/shammael/Documentos/Programing/node/noderest1/~/.vscode-root/1.27.2-shared.sock
+    at Object._errnoException (util.js:1024:11)
+    at _exceptionWithHostPort (util.js:1046:20)
+    at PipeConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+[2018-10-28 18:10:59.971] [renderer1] [error] An unknown error occurred. Please consult the log for more details.

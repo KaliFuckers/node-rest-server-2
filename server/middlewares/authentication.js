@@ -6,7 +6,9 @@ const verificarToken = (req, res, next) => {
 		if(err){
 			return res.status(401).json({
 				ok: false,
-				err
+				err: {
+					message: 'Token no válido'
+				}
 			})
 		}
 		req.usuario = decode.usuario;
@@ -17,7 +19,7 @@ const verificarToken = (req, res, next) => {
 const checkRoleAdmin = (req, res, next) => {
 	const usuario = req.usuario;
 	if(usuario.role !== 'ADMIN_ROLE'){
-		return res.status(400).json({
+		return res.status(401).json({
 			ok: false,
 			err: {
 				message: 'No tiene privilegios de administrador'
