@@ -28,9 +28,12 @@ app.get('/categoria', verificarToken, (req, res) => {
 					}
 				})
 			}
-			res.json({
-				ok: true,
-				categoria: categoriaDB
+			CategoriaModel.countDocuments((err, conteo) => {
+				res.json({
+					ok: true,
+					cuanto: conteo,
+					categoria: categoriaDB
+				})
 			})
 		})
 })
@@ -140,7 +143,7 @@ app.delete('/categoria/:id', [verificarToken, checkRoleAdmin], (req, res) => {
 				err:{
 					message: 'Categoria no existe'
 				}
-			})
+			}) 
 		}
 
 		res.json({

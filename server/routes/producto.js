@@ -13,6 +13,7 @@ app.get('/productos', verificarToken, (req, res) => {
 	const desde = Number(req.query.desde) || 0;
 	ProductoModel
 		.find({disponible: true})
+		.populate('categoria', 'description')
 		.limit(limite)
 		.skip(desde)
 		.exec((err, productoDB) => {
@@ -46,8 +47,7 @@ app.get('/productos', verificarToken, (req, res) => {
 app.get('/producto/:id', verificarToken, (req, res) => {
 	const {id} = req.params;
 	ProductoModel
-		.find({_id: id, disponible: false})
-		.populate('usuario', 'nombre email')
+		.find({_id: id, disponible: true})
 		.populate('categoria', 'description')
 		.exec((err, productoDB) => {
 			if(err){
@@ -95,9 +95,12 @@ app.get('/producto/buscar/:termino', verificarToken, (req, res) => {
 					}
 				})
 			}
-			res.json({
-				ok: true,
-				producto: productoDB
+			ProductoModel.countDocuments({nombre: regex, disponible: true}, (err, conteo) => {	
+				res.json({
+					ok: true,
+					producto: productoDB,
+					cuantos: conteo
+				})
 			})
 		})
 })
@@ -131,7 +134,7 @@ app.post('/producto', verificarToken, (req, res) => {
 //Actualizar un nuevo producto
 app.put('/producto/:id', verificarToken, (req, res) => {
 	const {id} = req.params;
-	const body = _.pick(req.body, ['nombre', 'precioUni', 'description', 'categoria']);
+	const body = _.pick(req.body, ['nombre', 'precioUni', 'description', 'categoria', 'disponible']);
 	ProductoModel.findByIdAndUpdate(id, body, {new: true, runValidators: true, context: 'query'}, (err, productoDB) => {
 		if(err){
 			return res.status(500).json({
