@@ -29,7 +29,23 @@ const checkRoleAdmin = (req, res, next) => {
 	next();
 }
 
+const verificarTokenUrl = (req, res, next) => {
+	const {qwxIDpM124rte007BVYUIswrew323NHhju90T} = req.query; 
+	jwt.verify(qwxIDpM124rte007BVYUIswrew323NHhju90T, process.env.SEED, (err, decode) => {
+		if(err){
+			return res.status(401).json({
+				ok: false,
+				err: {
+					message: 'Token no válido'
+				}
+			})
+		}
+		next();
+	})
+}
+
 module.exports = {
 	verificarToken,
-	checkRoleAdmin
+	checkRoleAdmin,
+	verificarTokenUrl
 }

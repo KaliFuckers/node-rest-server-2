@@ -1,6 +1,6 @@
 const express = require('express');
 const CategoriaModel = require('../models/categoria');
-const { verificarToken, checkRoleAdmin } = require('../middlewares/authentication');
+const { verificarToken, checkRoleAdmin, ver } = require('../middlewares/authentication');
 const _ = require('underscore');
 const app = express();
 
